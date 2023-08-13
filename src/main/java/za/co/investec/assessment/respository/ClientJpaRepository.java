@@ -9,5 +9,5 @@ import za.co.investec.assessment.model.Client;
 public interface ClientJpaRepository extends JpaRepository<Client, Long> {
     @Query("select c from Client c where c.firstName = ?1")
     Client searchByFirstName(String firstName);
-    
+
 }
