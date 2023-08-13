@@ -3,6 +3,7 @@ package za.co.investec.assessment.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import za.co.investec.assessment.model.Client;
+import za.co.investec.assessment.respository.ClientJpaRepository;
 import za.co.investec.assessment.respository.ClientRepository;
 
 import java.util.ArrayList;
@@ -13,9 +14,16 @@ public class ClientService {
     @Autowired
     ClientRepository clientRepository;
 
+    @Autowired
+    ClientJpaRepository clientJpaRepository;
+
     public List<Client> getAllClients(){
         List<Client> clients = new ArrayList<>();
         clientRepository.findAll().forEach(client -> clients.add(client));
         return clients;
+    }
+
+    public Client getClientByFirstName(String firstName){
+        return clientJpaRepository.searchByFirstName(firstName);
     }
 }
